@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlConfig>
+
+    <url name="Domain">
+        <severUrl>${domain}</severUrl>
+    </url>
+
+    <url name="WebHome">
+        <severUrl>http://${domain.home}</severUrl>
+    </url>
+
+    <url name="AssetsDomain">
+        <severUrl>http://${domain.assets}</severUrl>
+    </url>
+
+</urlConfig>

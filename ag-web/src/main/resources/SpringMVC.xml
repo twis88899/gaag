@@ -1,0 +1,47 @@
+﻿<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <array>
+                <value>classpath:fit-configs.properties</value>
+            </array>
+        </property>
+    </bean>
+	<!-- 启用SpringMVC的注解功能,它会自动注册HandlerMapping、HandlerAdapter、ExceptionResolver的相关实例 -->
+    <!--处理请求时返回json字符串的中文乱码问题-->
+    <mvc:annotation-driven>  
+    <mvc:message-converters register-defaults="true">  
+        <bean class="org.springframework.http.converter.StringHttpMessageConverter">  
+             <property name="supportedMediaTypes">    
+                <list>
+                    <value>text/javascript;charset=UTF-8</value>
+                    <value>application/json;charset=UTF-8</value>
+                    <value>text/plain;charset=UTF-8</value>    
+                    <value>text/html;charset=UTF-8</value>  
+                </list>    
+            </property>    
+        </bean>  
+    </mvc:message-converters>  
+    </mvc:annotation-driven>
+    
+    <aop:aspectj-autoproxy proxy-target-class="true">
+    </aop:aspectj-autoproxy>
+        
+    <context:component-scan base-package="com.*"/>
+    
+	
+    <bean id="urlBrokerFactory" class="com.twis.web.util.uri.URLBrokerFactory" init-method="init">
+    	<property name="urlConfigName" value="/url.xml"/>
+    </bean>
+    
+</beans>

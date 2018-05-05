@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+   
+    <diskStore path="java.io.tmpdir/ehcache"/>
+    
+    <!-- 默认缓存 -->
+    <defaultCache
+		   maxElementsInMemory="1000"
+		   eternal="false"
+		   timeToIdleSeconds="120"
+		   timeToLiveSeconds="120"
+		   overflowToDisk="false"/>
+		   
+	<!-- 单位缓存 -->	   
+    <cache name="companyCache" 
+           maxElementsInMemory="100000" 
+           eternal="false"
+		   timeToIdleSeconds="120"
+		   timeToLiveSeconds="120"
+		   overflowToDisk="false" 
+		   memoryStoreEvictionPolicy="LRU"/>
+		  
+	<!-- 接种疫苗缓存 -->	   
+    <cache name="vaccineCache" 
+           maxElementsInMemory="50000" 
+           eternal="false"
+		   timeToIdleSeconds="120"
+		   timeToLiveSeconds="120"
+		   overflowToDisk="false" 
+		   memoryStoreEvictionPolicy="LRU"/>
+    
+</ehcache>
+
